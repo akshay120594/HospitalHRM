@@ -7,6 +7,7 @@ import com.jbk.hospitalhrm.entity.Patient;
 
 public interface HospitalDao {
 	public boolean savePatient(Patient patient);
+	public boolean saveDoctor(Doctor doctor);
 	public int saveDoctor(List<Doctor> list);
 	public List<Doctor> getListOfDoctors();
     public List<Patient> listOfPatients();

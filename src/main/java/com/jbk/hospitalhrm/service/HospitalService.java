@@ -12,6 +12,7 @@ import com.jbk.hospitalhrm.entity.Patient;
 
 public interface HospitalService {
 	public boolean savePatient(Patient patient);
+	public boolean saveDoctor(Doctor doctor);
 	public Map<String,String> uploadDoctorExcelSheet(CommonsMultipartFile file,HttpSession session);
     public List<Doctor> getListOfDoctors();
     public List<Doctor> getPatientsDoctorSuggestion(String idPatient);

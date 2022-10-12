@@ -198,6 +198,25 @@ public class HospitalDaoImpl implements HospitalDao {
 		return isUpdated;
 	}
 
+	@Override
+	public boolean saveDoctor(Doctor doctor) {
+		Session session=null;
+		Transaction transaction=null;
+		boolean isAdded=false;
+		try {
+			session=sessionFactory.openSession();
+			transaction=session.beginTransaction();
+			session.save(doctor);
+		    transaction.commit();
+		    isAdded=true;
+			} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			session.close();
+		}
+		return isAdded;
+	}
+
 	
 
 

@@ -36,7 +36,7 @@ public class HospitalServiceImpl implements HospitalService {
 	@Autowired
 	private HospitalDao dao;
 	
-	String excludedRows = "";
+	
 	int totalRecordCount = 0;
 
 
@@ -313,6 +313,12 @@ public class HospitalServiceImpl implements HospitalService {
 				
 			}
 			return d2;
+	}
+
+	@Override
+	public boolean saveDoctor(Doctor doctor) {
+		boolean isAdded=dao.saveDoctor(doctor);
+		return isAdded;
 	}
 
 }

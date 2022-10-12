@@ -39,7 +39,17 @@ public class HospitalController {
 		if(isAdded)
 			return new ResponseEntity<Boolean>(isAdded,HttpStatus.OK);
 		else
-			throw new PatientNotFoundException("patient invalid");
+			throw new PatientNotFoundException("invalid patient ");
+		}
+	
+	@PostMapping(value = "/savedoctor")
+	public ResponseEntity<Boolean> savePatient(@RequestBody Doctor doctor){
+		boolean isAdded=service.saveDoctor(doctor);
+		System.out.println(doctor);
+		if(isAdded)
+			return new ResponseEntity<Boolean>(isAdded,HttpStatus.OK);
+		else
+			throw new PatientNotFoundException("invalid doctor");
 		}
 	
 	@PostMapping(value = "/uploadexcel")
@@ -48,7 +58,7 @@ public class HospitalController {
 		if(map!=null)
 			return new ResponseEntity<Map<String,String>>(map,HttpStatus.OK);
 		else
-			throw new DoctorNotFoundException("doctor invalid");
+			throw new DoctorNotFoundException("invalid doctor");
 		}
 	
 	@GetMapping(value = "/getlistofdoctor")
@@ -57,7 +67,7 @@ public class HospitalController {
 		if(list!=null)
 			return new ResponseEntity<List<Doctor>>(list,HttpStatus.OK);
 		else
-			throw new DoctorNotFoundException("doctors not found");
+			throw new DoctorNotFoundException("doctors list not found");
 		}
 	
 	@GetMapping(value = "/getlistofpatient")
@@ -66,7 +76,7 @@ public class HospitalController {
 		if(list!=null)
 			return new ResponseEntity<List<Patient>>(list,HttpStatus.OK);
 		else
-			throw new PatientNotFoundException("patients not found");
+			throw new PatientNotFoundException("patients list not found");
 		}
 	
 	@GetMapping(value = "/listbydepartment/{department}")
@@ -75,7 +85,7 @@ public class HospitalController {
 		if(list!=null)
 			return new ResponseEntity<List<Doctor>>(list,HttpStatus.OK);
 		else
-			throw new DoctorNotFoundException("doctors not found");
+			throw new DoctorNotFoundException("doctors department not found");
 		}
 	
 	@GetMapping(value = "/patientspreferencedoctor")
@@ -84,7 +94,7 @@ public class HospitalController {
 		if(list!=null)
 			return new ResponseEntity<List<Doctor>>(list,HttpStatus.OK);
 		else
-			throw new DoctorNotFoundException("doctors not found");
+			throw new DoctorNotFoundException("preffered doctors not found");
 	}
 	
 	@GetMapping(value = "/loadpatientdetail")
@@ -93,7 +103,7 @@ public class HospitalController {
 		if(patient!=null)
 			return new ResponseEntity<Patient>(patient,HttpStatus.OK);
 		else
-			throw new PatientNotFoundException("patients not found");
+			throw new PatientNotFoundException("patients not found for id-"+idPatient);
 		}
 	
 	@GetMapping(value = "/loaddoctordetail")
@@ -102,7 +112,7 @@ public class HospitalController {
 		if(doctor!=null)
 			return new ResponseEntity<Doctor>(doctor,HttpStatus.OK);
 		else
-			throw new DoctorNotFoundException("doctor not found");
+			throw new DoctorNotFoundException("doctor not found for id-"+idDoctor);
 		}
 	
 	@GetMapping(value ="sortbyfee" )
@@ -147,7 +157,7 @@ public class HospitalController {
 		if(list!=null)
 			return new ResponseEntity<List<Doctor>>(list,HttpStatus.OK);
 		else
-			throw new DoctorNotFoundException("nurse not found");
+			throw new DoctorNotFoundException("nurse list not found");
 		}
 	
 	@GetMapping(value = "/getlistofcompounder")
@@ -156,7 +166,7 @@ public class HospitalController {
 		if(list!=null)
 			return new ResponseEntity<List<Doctor>>(list,HttpStatus.OK);
 		else
-			throw new DoctorNotFoundException("compounder not found");
+			throw new DoctorNotFoundException("compounder list not found");
 		}
 	
 	@DeleteMapping(value = "deletepatientdetails")    
@@ -165,7 +175,7 @@ public class HospitalController {
 			if(isDeleted)
 				return new ResponseEntity<Boolean>(isDeleted,HttpStatus.OK);
 			else
-				throw new PatientNotFoundException("Patient not found");
+				throw new PatientNotFoundException("Patient not found for id-"+idPatient);
 		}
 	   
 	@PutMapping(value = "updatepatientdetails")
@@ -174,7 +184,7 @@ public class HospitalController {
 			if(isUpdated)
 				return new ResponseEntity<Boolean>(isUpdated,HttpStatus.OK);
 			else
-				throw new PatientNotFoundException("Patient not found");
+				throw new PatientNotFoundException("Patient not found for id-"+patient.getIdPatient());
 		}
 	
 	
